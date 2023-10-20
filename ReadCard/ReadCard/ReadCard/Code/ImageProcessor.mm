@@ -5,10 +5,19 @@
 #import <opencv2/imgproc/types_c.h>
 #import <opencv2/imgcodecs/ios.h>
 #endif
-
 #import "ImageProcessor.h"
 
+
+@interface ImageProcessor()
+
+@property(nonatomic,assign)CardType type;//读取卡片类型
+
+@end
+
+
 @implementation ImageProcessor
+
+
 
 - (NSString *)pathForFaceCascadeFile {
     // 获取当前应用的主 bundle
@@ -115,7 +124,9 @@
 }
 
 //获取平行的身份证照片
-- (UIImage *)processIDCardImage:(UIImage *)inputImage {
+- (UIImage *)processIDCardImage:(UIImage *)inputImage withCardType:(CardType)cardType {
+    
+    self.type = cardType;
     
     inputImage = [self newImagfeRotateWithImage:inputImage];
     

@@ -37,11 +37,64 @@
     return _gender;
 }
 
+
+
+/// 调用此方法，获取用户姓名身份证号码信息
+/// - Parameters:
+///   - inputImage: 图片
+///   - cardType: 卡片类型
+///   - completion 模型回调
++ (void)getUserInfoModelWithImage:(UIImage *)inputImage withCardType:(CardType)cardType completion:(void (^_Nullable)(UserInfoModel * _Nullable))completion {
+    
+    ImageProcessor *imageProcessor = [[ImageProcessor alloc] init];
+    
+    UIImage *image = [imageProcessor processIDCardImage:inputImage withCardType:cardType];
+    
+    if (image) {
+        
+        [SwitfTool recognizeTextWithImage:image completion:^(NSString * recognizedText) {
+            if (recognizedText) {
+                NSLog(@"识别到的文本：%@", recognizedText);
+                
+                UserInfoModel *model = [UserInfoModel getParsingUserInformationWithStr:recognizedText withCardType:cardType];
+                completion(model);
+                
+            } else {
+                NSLog(@"未能识别到文本");
+                completion(nil);
+            }
+        }];
+        
+    } else {
+        NSLog(@"身份证截取图片失败");
+        completion(nil);
+    }
+}
+
+
++ (UserInfoModel *)getParsingUserInformationWithStr:(NSString *)recognizedText withCardType:(CardType)cardType {
+    
+    UserInfoModel *model = [UserInfoModel extractUserInfoFromText:recognizedText withCardType:cardType];
+    
+    if(model) {
+        
+        return model;
+    }
+    
+    NSLog(@"未匹配到用户信息");
+    return nil;
+    
+    
+}
+
+
+
+
 /// 传入字符串，获取用户名称和身份证字号
 /// - Parameters:
 ///   - text: 字符串
 ///   - cardType: 卡片类型
-+ (UserInfoModel *)extractUserInfoFromText:(NSString *)text withCardType:(CardType)cardType {
++ (UserInfoModel *_Nullable)extractUserInfoFromText:(NSString *_Nullable)text withCardType:(CardType)cardType {
     
     UserInfoModel *model = [[UserInfoModel alloc] init];
     

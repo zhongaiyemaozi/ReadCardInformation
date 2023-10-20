@@ -7,8 +7,8 @@
 
 #import "ViewController.h"
 #import "ImageProcessor.h"
-#import "ReadCard-Swift.h"
-#import "UserInfoModel.h"
+
+
 
 @interface ViewController ()
 
@@ -26,7 +26,6 @@
 
 #define IdentificationCardimaheName @"hsenfenzhengTemp.jpg" //平行的身份证
 #define SocialSecurityCardImaheName @"WechatIMG22150.jpg" //社保卡平行身份证
-
 
 @implementation ViewController
 
@@ -46,25 +45,15 @@
     
     NSLog(@"点击了身份证读取");
     
-    UIImage *image = [self.imageProcessor processIDCardImage:[UIImage imageNamed:IdentificationCardimaheName]];
-    
-    if (image) {
+    [UserInfoModel getUserInfoModelWithImage:[UIImage imageNamed:IdentificationCardimaheName] withCardType:CardTypeIdentificationCard completion:^(UserInfoModel * model) {
         
-        [SwitfTool recognizeTextWithImage:image completion:^(NSString *recognizedText) {
-            if (recognizedText) {
-                NSLog(@"识别到的文本：%@", recognizedText);
-                
-                [self getParsingUserInformationWithStr:recognizedText withCardType:CardTypeIdentificationCard];
-                
-            } else {
-                NSLog(@"未能识别到文本");
-            }
-        }];
+        if(model) {
+            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@",model.userName,model.identificationCard,model.birthday,model.gender);
+        } else {
+            NSLog(@"身份证读取失败");
+        }
         
-        self.imageView.image = image;
-    } else {
-        NSLog(@"身份证截取图片失败");
-    }
+    }];
     
     
     
@@ -76,7 +65,7 @@
     
     NSLog(@"点击了截取图片");
     
-    UIImage *image = [self.imageProcessor processIDCardImage:[UIImage imageNamed:IdentificationCardimaheName]];
+    UIImage *image = [self.imageProcessor processIDCardImage:[UIImage imageNamed:IdentificationCardimaheName] withCardType:CardTypeIdentificationCard];
     
     if (image) {
         self.imageView.image = image;
@@ -84,7 +73,7 @@
         NSLog(@"身份证截取图片失败");
     }
     
-    UIImage *Socialimage = [self.imageProcessor processIDCardImage:[UIImage imageNamed:SocialSecurityCardImaheName]];
+    UIImage *Socialimage = [self.imageProcessor processIDCardImage:[UIImage imageNamed:SocialSecurityCardImaheName] withCardType:CardTypeSocialSecurityCard];
     
     if (Socialimage) {
         self.SocialImageView.image = Socialimage;
@@ -97,36 +86,22 @@
 - (IBAction)btnThree:(UIButton *)sender {
     
     NSLog(@"点击了社保卡识别");
-    UIImage *Socialimage = [self.imageProcessor processIDCardImage:[UIImage imageNamed:SocialSecurityCardImaheName]];
-    
-    if (Socialimage) {
-        [SwitfTool recognizeTextWithImage:Socialimage completion:^(NSString *recognizedText) {
-            if (recognizedText) {
-                NSLog(@"识别到的文本：%@", recognizedText);
-                [self getParsingUserInformationWithStr:recognizedText withCardType:CardTypeSocialSecurityCard];
-            } else {
-                NSLog(@"未能识别到文本");
-            }
-        }];
-        self.SocialImageView.image = Socialimage;
-    } else {
-        NSLog(@"社保卡截取图片失败");
-    }
+    [UserInfoModel getUserInfoModelWithImage:[UIImage imageNamed:SocialSecurityCardImaheName] withCardType:CardTypeSocialSecurityCard completion:^(UserInfoModel * model) {
+        
+        if(model) {
+            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@",model.userName,model.identificationCard,model.birthday,model.gender);
+        } else {
+            NSLog(@"社保卡读取失败");
+        }
+        
+    }];
     
     
 }
 
 
 
-- (void)getParsingUserInformationWithStr:(NSString *)recognizedText withCardType:(CardType)cardType {
-    UserInfoModel *model = [UserInfoModel extractUserInfoFromText:recognizedText withCardType:cardType];
-    
-    if(model) {
-        NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@",model.userName,model.identificationCard,model.birthday,model.gender);
-    } else {
-        NSLog(@"未匹配到用户信息");
-    }
-}
+
 
 
 

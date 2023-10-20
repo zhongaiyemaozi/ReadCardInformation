@@ -15,12 +15,12 @@
 		7818AC5A2AE1FCC20087F823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC592AE1FCC20087F823 /* Assets.xcassets */; };
 		7818AC5D2AE1FCC20087F823 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC5B2AE1FCC20087F823 /* LaunchScreen.storyboard */; };
 		7818AC602AE1FCC20087F823 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7818AC5F2AE1FCC20087F823 /* main.m */; };
-		7818AC682AE1FE600087F823 /* SwitfTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7818AC672AE1FE600087F823 /* SwitfTool.swift */; };
 		7818AC722AE1FEC00087F823 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7818AC6C2AE1FEBF0087F823 /* ImageProcessor.mm */; };
 		7818AC732AE1FEC00087F823 /* WechatIMG22150.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC6E2AE1FEBF0087F823 /* WechatIMG22150.jpg */; };
 		7818AC742AE1FEC00087F823 /* hsenfenzhengTemp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC6F2AE1FEBF0087F823 /* hsenfenzhengTemp.jpg */; };
 		7818AC752AE1FEC00087F823 /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC712AE1FEBF0087F823 /* haarcascade_frontalface_alt.xml */; };
 		7818AC782AE1FF0F0087F823 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7818AC772AE1FF0F0087F823 /* UserInfoModel.m */; };
+		7849694C2AE2290F00E880A8 /* SwitfTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849694B2AE2290F00E880A8 /* SwitfTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,6 @@
 		7818AC5E2AE1FCC20087F823 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7818AC5F2AE1FCC20087F823 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7818AC662AE1FE600087F823 /* ReadCard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadCard-Bridging-Header.h"; sourceTree = "<group>"; };
-		7818AC672AE1FE600087F823 /* SwitfTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitfTool.swift; sourceTree = "<group>"; };
 		7818AC6B2AE1FEBF0087F823 /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
 		7818AC6C2AE1FEBF0087F823 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
 		7818AC6E2AE1FEBF0087F823 /* WechatIMG22150.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WechatIMG22150.jpg; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		7818AC712AE1FEBF0087F823 /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
 		7818AC762AE1FF0F0087F823 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		7818AC772AE1FF0F0087F823 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		7849694B2AE2290F00E880A8 /* SwitfTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitfTool.swift; sourceTree = "<group>"; };
 		CF5E646D8AFE6AF0582A776A /* Pods-ReadCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadCard.debug.xcconfig"; path = "Target Support Files/Pods-ReadCard/Pods-ReadCard.debug.xcconfig"; sourceTree = "<group>"; };
 		D45DC9DD4B5CDB37E6CC47DC /* Pods_ReadCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,7 +107,6 @@
 				7818AC512AE1FCC10087F823 /* SceneDelegate.m */,
 				7818AC532AE1FCC10087F823 /* ViewController.h */,
 				7818AC542AE1FCC10087F823 /* ViewController.m */,
-				7818AC672AE1FE600087F823 /* SwitfTool.swift */,
 				7818AC562AE1FCC10087F823 /* Main.storyboard */,
 				7818AC592AE1FCC20087F823 /* Assets.xcassets */,
 				7818AC5B2AE1FCC20087F823 /* LaunchScreen.storyboard */,
@@ -131,6 +130,7 @@
 		7818AC6A2AE1FEBF0087F823 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				7849694B2AE2290F00E880A8 /* SwitfTool.swift */,
 				7818AC6B2AE1FEBF0087F823 /* ImageProcessor.h */,
 				7818AC6C2AE1FEBF0087F823 /* ImageProcessor.mm */,
 				7818AC762AE1FF0F0087F823 /* UserInfoModel.h */,
@@ -167,6 +167,7 @@
 				7818AC462AE1FCC10087F823 /* Sources */,
 				7818AC472AE1FCC10087F823 /* Frameworks */,
 				7818AC482AE1FCC10087F823 /* Resources */,
+				CA430AC6E238BC6DA26DB4CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +250,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CA430AC6E238BC6DA26DB4CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReadCard/Pods-ReadCard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReadCard/Pods-ReadCard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReadCard/Pods-ReadCard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -258,8 +276,8 @@
 			files = (
 				7818AC552AE1FCC10087F823 /* ViewController.m in Sources */,
 				7818AC782AE1FF0F0087F823 /* UserInfoModel.m in Sources */,
+				7849694C2AE2290F00E880A8 /* SwitfTool.swift in Sources */,
 				7818AC4F2AE1FCC10087F823 /* AppDelegate.m in Sources */,
-				7818AC682AE1FE600087F823 /* SwitfTool.swift in Sources */,
 				7818AC602AE1FCC20087F823 /* main.m in Sources */,
 				7818AC722AE1FEC00087F823 /* ImageProcessor.mm in Sources */,
 				7818AC522AE1FCC10087F823 /* SceneDelegate.m in Sources */,
@@ -414,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 329SAA44YA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReadCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -447,6 +466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 329SAA44YA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReadCard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

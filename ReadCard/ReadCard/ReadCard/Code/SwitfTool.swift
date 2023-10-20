@@ -8,6 +8,7 @@
 import UIKit
 import Vision
 
+@available(iOS 13.0, *)
 class SwitfTool: NSObject {
     
     @objc class func recognizeText(image: UIImage, completion: @escaping (String?) -> Void) {
@@ -47,8 +48,5 @@ class SwitfTool: NSObject {
             completion(nil)
         }
     }
-
-
-    
     
 }
