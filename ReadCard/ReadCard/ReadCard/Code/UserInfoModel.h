@@ -15,6 +15,9 @@
 API_AVAILABLE(ios(13.0))
 @interface UserInfoModel : NSObject
 
+//扫描原来数据
+@property(nonatomic,copy)NSString * _Nullable rawData;
+
 /// 名字
 @property(nonatomic,copy)NSString * _Nullable userName;
 

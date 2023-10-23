@@ -9,6 +9,7 @@
 typedef enum {
     CardTypeIdentificationCard = 0, //身份证
     CardTypeSocialSecurityCard = 1, //社保卡
+    CardTypeThaiCard = 1, //泰国证件
 } CardType; //卡片类型
 
 

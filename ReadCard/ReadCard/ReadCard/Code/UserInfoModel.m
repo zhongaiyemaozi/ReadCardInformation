@@ -52,7 +52,7 @@
     
     if (image) {
         
-        [SwitfTool recognizeTextWithImage:image completion:^(NSString * recognizedText) {
+        [SwitfTool recognizeTextWithImage:image cardType:cardType completion:^(NSString * recognizedText) {
             if (recognizedText) {
                 NSLog(@"识别到的文本：%@", recognizedText);
                 
@@ -97,45 +97,51 @@
 + (UserInfoModel *_Nullable)extractUserInfoFromText:(NSString *_Nullable)text withCardType:(CardType)cardType {
     
     UserInfoModel *model = [[UserInfoModel alloc] init];
+    model.rawData = text;
     
-    NSString *nameRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
-    @"姓名\\s(\\S+)" :
-    @"姓名(\\S+)\\s.";
-    
-    // 提取姓名
-    NSRegularExpression *nameRegex = [NSRegularExpression regularExpressionWithPattern:nameRegexPattern options:0 error:nil];
-    NSTextCheckingResult *nameMatch = [nameRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
-    
-    if (nameMatch) {
-        NSString *name = [UserInfoModel matchedStringForRange:[nameMatch rangeAtIndex:1] inText:text];
-        model.userName = name;
-    } else {
-        NSLog(@"未匹配到姓名");
-    }
-
-    // 提取身份证号码或社会保障号码
-    NSString *idNumberRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
-        @".*社会保障号码\\s(\\d{18})" :
-        @".*身份证号码\\s(\\d{18})";
-
-    NSRegularExpression *idNumberRegex = [NSRegularExpression regularExpressionWithPattern:idNumberRegexPattern options:0 error:nil];
-    NSTextCheckingResult *idNumberMatch = [idNumberRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
-
-    if (idNumberMatch) {
-        NSString *idNumber = [UserInfoModel matchedStringForRange:[idNumberMatch rangeAtIndex:1] inText:text];
-        model.identificationCard = idNumber;
+    if(cardType == CardTypeIdentificationCard || cardType == CardTypeSocialSecurityCard) {
+        NSString *nameRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
+        @"姓名\\s(\\S+)" :
+        @"姓名(\\S+)\\s.";
         
-        // 更新生日和性别信息
-        model = [UserInfoModel updateUserInfoWithBirthdayAndGender:model];
-    } else {
-        NSLog(@"未匹配身份证号码或社会保障号码");
-    }
+        // 提取姓名
+        NSRegularExpression *nameRegex = [NSRegularExpression regularExpressionWithPattern:nameRegexPattern options:0 error:nil];
+        NSTextCheckingResult *nameMatch = [nameRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+        
+        if (nameMatch) {
+            NSString *name = [UserInfoModel matchedStringForRange:[nameMatch rangeAtIndex:1] inText:text];
+            model.userName = name;
+        } else {
+            NSLog(@"未匹配到姓名");
+        }
 
-    // 如果姓名或身份证号码任意一个匹配成功，则返回模型
-    if (model.userName.length > 0 || model.identificationCard.length > 0) {
+        // 提取身份证号码或社会保障号码
+        NSString *idNumberRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
+            @".*社会保障号码\\s(\\d{18})" :
+            @".*身份证号码\\s(\\d{18})";
+
+        NSRegularExpression *idNumberRegex = [NSRegularExpression regularExpressionWithPattern:idNumberRegexPattern options:0 error:nil];
+        NSTextCheckingResult *idNumberMatch = [idNumberRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+
+        if (idNumberMatch) {
+            NSString *idNumber = [UserInfoModel matchedStringForRange:[idNumberMatch rangeAtIndex:1] inText:text];
+            model.identificationCard = idNumber;
+            
+            // 更新生日和性别信息
+            model = [UserInfoModel updateUserInfoWithBirthdayAndGender:model];
+        } else {
+            NSLog(@"未匹配身份证号码或社会保障号码");
+        }
+        
+        // 如果姓名或身份证号码任意一个匹配成功，则返回模型
+        if (model.userName.length > 0 || model.identificationCard.length > 0) {
+            return model;
+        }
+        
+    } else if(cardType == CardTypeThaiCard){
         return model;
     }
-
+    
     return nil;
 }
 

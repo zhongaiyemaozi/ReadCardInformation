@@ -48,7 +48,7 @@
     [UserInfoModel getUserInfoModelWithImage:[UIImage imageNamed:IdentificationCardimaheName] withCardType:CardTypeIdentificationCard completion:^(UserInfoModel * model) {
         
         if(model) {
-            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@",model.userName,model.identificationCard,model.birthday,model.gender);
+            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@ \n原数据 = %@",model.userName,model.identificationCard,model.birthday,model.gender,model.rawData);
         } else {
             NSLog(@"身份证读取失败");
         }
@@ -89,7 +89,7 @@
     [UserInfoModel getUserInfoModelWithImage:[UIImage imageNamed:SocialSecurityCardImaheName] withCardType:CardTypeSocialSecurityCard completion:^(UserInfoModel * model) {
         
         if(model) {
-            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@",model.userName,model.identificationCard,model.birthday,model.gender);
+            NSLog(@" \n姓名= %@ \n身份证号码 = %@ \n生日 = %@ \n性别 = %@ \n原数据 = %@",model.userName,model.identificationCard,model.birthday,model.gender,model.rawData);
         } else {
             NSLog(@"社保卡读取失败");
         }

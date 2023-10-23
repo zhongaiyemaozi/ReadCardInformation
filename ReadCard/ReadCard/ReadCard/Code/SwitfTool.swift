@@ -11,7 +11,7 @@ import Vision
 @available(iOS 13.0, *)
 class SwitfTool: NSObject {
     
-    @objc class func recognizeText(image: UIImage, completion: @escaping (String?) -> Void) {
+    @objc class func recognizeText(image: UIImage,cardType: CardType, completion: @escaping (String?) -> Void) {
         guard let cgImage = image.cgImage else {
             completion(nil)
             return
@@ -35,9 +35,20 @@ class SwitfTool: NSObject {
 
             completion(recognizedText)
         }
+        switch cardType {
+        case CardTypeIdentificationCard:
+            request.recognitionLanguages = ["zh-Hans"] // 简体中文
+            break
+        case CardTypeIdentificationCard:
+            request.recognitionLanguages = ["zh-Hans"] // 简体中文
+            break
+        case CardTypeThaiCard:
+            request.recognitionLanguages = ["Thai"] //泰文
+            break
+        default:
+            request.recognitionLanguages = ["zh-Hans"] // 简体中文
+        }
         
-        // 英文和简体中文
-        request.recognitionLanguages = ["zh-Hans"] // 简体中文
         
         let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
 
