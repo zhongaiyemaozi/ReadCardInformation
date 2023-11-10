@@ -1,6 +1,11 @@
 // ImageProcessor.m
 
 
+#ifdef __cplusplus
+#include <opencv2/opencv.hpp>
+#import <opencv2/imgproc/types_c.h>
+#import <opencv2/imgcodecs/ios.h>
+#endif
 
 #import "ImageProcessor.h"
 
