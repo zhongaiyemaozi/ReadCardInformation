@@ -112,12 +112,25 @@
             NSString *name = [UserInfoModel matchedStringForRange:[nameMatch rangeAtIndex:1] inText:text];
             model.userName = name;
         } else {
-            NSLog(@"未匹配到姓名");
+            
+            NSString *nameRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
+            @"姓名(\\S+)\\s." :
+            @"姓名\\s(\\S+)";
+            
+            // 提取姓名
+            NSRegularExpression *nameRegex = [NSRegularExpression regularExpressionWithPattern:nameRegexPattern options:0 error:nil];
+            NSTextCheckingResult *nameMatch = [nameRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+            if (nameMatch) {
+                NSString *name = [UserInfoModel matchedStringForRange:[nameMatch rangeAtIndex:1] inText:text];
+                model.userName = name;
+            } else {
+                NSLog(@"未匹配到姓名");
+            }
         }
 
         // 提取身份证号码或社会保障号码
         NSString *idNumberRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
-            @".*社会保障号码\\s(\\d{18})" :
+            @"社会保障号码\\s(\\S+)" :
             @".*身份证号码\\s(\\d{18})";
 
         NSRegularExpression *idNumberRegex = [NSRegularExpression regularExpressionWithPattern:idNumberRegexPattern options:0 error:nil];
@@ -130,7 +143,23 @@
             // 更新生日和性别信息
             model = [UserInfoModel updateUserInfoWithBirthdayAndGender:model];
         } else {
-            NSLog(@"未匹配身份证号码或社会保障号码");
+            
+            // 提取身份证号码或社会保障号码
+            NSString *idNumberRegexPattern = (cardType == CardTypeSocialSecurityCard) ?
+                @".*社会保障号码\\s(\\d{18})" :
+                @"身份证号码\\s(\\S+)";
+
+            NSRegularExpression *idNumberRegex = [NSRegularExpression regularExpressionWithPattern:idNumberRegexPattern options:0 error:nil];
+            NSTextCheckingResult *idNumberMatch = [idNumberRegex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+
+            if (idNumberMatch) {
+                NSString *idNumber = [UserInfoModel matchedStringForRange:[idNumberMatch rangeAtIndex:1] inText:text];
+                model.identificationCard = idNumber;
+                // 更新生日和性别信息
+                model = [UserInfoModel updateUserInfoWithBirthdayAndGender:model];
+            } else {
+                NSLog(@"未匹配身份证号码或社会保障号码");
+            }
         }
         
         // 如果姓名或身份证号码任意一个匹配成功，则返回模型
@@ -163,7 +192,7 @@
 
         // 根据身份证号码获取性别
         NSInteger genderDigit = [[userInfo.identificationCard substringWithRange:NSMakeRange(16, 1)] integerValue];
-        userInfo.gender = (genderDigit % 2 == 0) ? @"女" : @"男";
+        userInfo.gender = (genderDigit % 2 == 0) ? @"1" : @"0";
     }
 
     return userInfo;

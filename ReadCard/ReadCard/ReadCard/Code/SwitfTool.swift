@@ -39,14 +39,14 @@ class SwitfTool: NSObject {
         case CardTypeIdentificationCard:
             request.recognitionLanguages = ["zh-Hans"] // 简体中文
             break
-        case CardTypeIdentificationCard:
+        case CardTypeSocialSecurityCard:
             request.recognitionLanguages = ["zh-Hans"] // 简体中文
             break
         case CardTypeThaiCard:
             request.recognitionLanguages = ["Thai"] //泰文
             break
         default:
-            request.recognitionLanguages = ["zh-Hans"] // 简体中文
+            break
         }
         
         

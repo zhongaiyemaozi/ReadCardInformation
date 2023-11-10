@@ -20,7 +20,7 @@
 		7818AC742AE1FEC00087F823 /* hsenfenzhengTemp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC6F2AE1FEBF0087F823 /* hsenfenzhengTemp.jpg */; };
 		7818AC752AE1FEC00087F823 /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7818AC712AE1FEBF0087F823 /* haarcascade_frontalface_alt.xml */; };
 		7818AC782AE1FF0F0087F823 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7818AC772AE1FF0F0087F823 /* UserInfoModel.m */; };
-		7849694C2AE2290F00E880A8 /* SwitfTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849694B2AE2290F00E880A8 /* SwitfTool.swift */; };
+		788BD1842AFDCDC400D879B9 /* SwitfTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849694B2AE2290F00E880A8 /* SwitfTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,7 +258,7 @@
 			files = (
 				7818AC552AE1FCC10087F823 /* ViewController.m in Sources */,
 				7818AC782AE1FF0F0087F823 /* UserInfoModel.m in Sources */,
-				7849694C2AE2290F00E880A8 /* SwitfTool.swift in Sources */,
+				788BD1842AFDCDC400D879B9 /* SwitfTool.swift in Sources */,
 				7818AC4F2AE1FCC10087F823 /* AppDelegate.m in Sources */,
 				7818AC602AE1FCC20087F823 /* main.m in Sources */,
 				7818AC722AE1FEC00087F823 /* ImageProcessor.mm in Sources */,

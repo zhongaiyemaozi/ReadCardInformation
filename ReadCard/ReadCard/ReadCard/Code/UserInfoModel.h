@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ImageProcessor.h"
-#import "ReadCard-Swift.h"
 
 API_AVAILABLE(ios(13.0))
 @interface UserInfoModel : NSObject
